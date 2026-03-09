@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import  PlayerCard  from '../components/PlayerCard';
 import { playersData, sportsCategories } from '../data/players';
 import { Search, Filter, Grid, List } from 'lucide-react';
