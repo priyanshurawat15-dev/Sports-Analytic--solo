@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import  PlayerCard  from '../components/PlayerCard';
-import { playersData, sportsCategories } from '../data/players';
+import { sportsCategories } from '../data/players';
 import { Search, Filter, Grid, List } from 'lucide-react';
 
 const PlayersList = () => {
@@ -8,8 +8,41 @@ const PlayersList = () => {
   const [selectedSport, setSelectedSport] = useState('All');
   const [viewMode, setViewMode] = useState('grid');
 
+  const [players, setPlayers] = useState([]);
+
+  useEffect(() => {
+  if (!searchTerm) return;
+
+  fetch(`https://www.thesportsdb.com/api/v1/json/3/searchplayers.php?p=${searchTerm}`)
+    .then(res => res.json())
+    .then(data => {
+      if (data.player) {
+        const formatted = data.player.map((p, index) => ({
+          id: index + 1,
+          name: p.strPlayer,
+          sport: p.strSport,
+          country: p.strNationality,
+          position: p.strPosition,
+          age: p.dateBorn || "N/A",
+          image: p.strThumb,
+          runs: 0,
+          goals: 0,
+          points: 0,
+          grandSlams: 0,
+          achievements: []
+        }));
+
+        setPlayers(formatted);
+      } else {
+        setPlayers([]);
+      }
+    });
+}, [searchTerm]);
+
+
   const filteredPlayers = useMemo(() => {
-    return playersData.filter(player => {
+    return players.filter(player => {
+
       const matchesSearch = player.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            player.country.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesSport = selectedSport === 'All' || player.sport === selectedSport;
@@ -83,7 +116,7 @@ const PlayersList = () => {
               {/* Results Count and View Toggle */}
               <div className="flex justify-between items-center mt-6">
                 <div className="text-gray-300">
-                  Showing <span className="text-red-600 font-bold">{filteredPlayers.length}</span> of <span className="text-white font-bold">{playersData.length}</span> players
+                  Showing <span className="text-red-600 font-bold">{filteredPlayers.length}</span> of <span className="text-white font-bold">{players.length}</span> players
                 </div>
                 
                 <div className="flex items-center space-x-2">

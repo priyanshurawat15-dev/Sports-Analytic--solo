@@ -25,73 +25,103 @@ const Home = () => {
   return (
     <div className="space-y-20">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black opacity-90"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-red-600/20 to-transparent"></div>
-        </div>
-        
-        {/* Content */}
-        <div className="relative z-10 container mx-auto px-4 text-center">
-          <div className="max-w-4xl mx-auto">
-            <div className="mb-6">
-              <span className="inline-block px-4 py-2 bg-red-600/20 border border-red-600/50 rounded-full text-red-500 text-sm font-semibold uppercase tracking-wider mb-6">
-                Welcome to the Ultimate Sports Database
-              </span>
-            </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-              SPORTS PLAYER
-              <span className="block text-red-600">STATS & RECORDS</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
-              Explore comprehensive statistics, achievements, and records of legendary sports players from around the world
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/players" className="btn-modern">
-                Explore Players
-              </Link>
-              <Link to="/compare" className="btn-secondary-modern">
-                Compare Stats
-              </Link>
-            </div>
-          </div>
-        </div>
-        
-        {/* Animated Elements */}
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-gray-600 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-gray-600 rounded-full mt-2"></div>
-          </div>
-        </div>
-      </section>
+      <section className="relative h-screen flex items-center justify-center overflow-hidden text-white">
+  {/* Background Video */}
+  <video
+    autoPlay
+    muted
+    loop
+    playsInline
+    className="absolute inset-0 w-full h-full object-cover"
+  >
+    <source src="/videos/basketball.mp4" type="video/mp4" />
+  </video>
+
+  {/* Dark Overlay */}
+  <div className="absolute inset-0 bg-black/70"></div>
+
+  {/* Hero Content */}
+  <div className="relative z-10 text-center px-4 max-w-4xl">
+
+    <span className="inline-block px-4 py-2 bg-red-600/20 border border-red-500/40 rounded-full text-red-400 text-sm mb-6">
+      Welcome to the Ultimate Sports Database
+    </span>
+
+    <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+      SPORTS PLAYER
+      <span className="block text-red-500">
+        STATS & RECORDS
+      </span>
+    </h1>
+
+    <p className="mt-6 text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+      Explore comprehensive statistics, achievements and records of legendary sports players around the world.
+    </p>
+
+    <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+
+      <Link
+        to="/players"
+        className="bg-red-600 hover:bg-red-700 px-6 py-3 rounded-lg font-semibold transition"
+      >
+        Explore Players
+      </Link>
+
+      <Link
+        to="/compare"
+        className="border border-gray-500 hover:bg-gray-800 px-6 py-3 rounded-lg transition"
+      >
+        Compare Stats
+      </Link>
+
+    </div>
+
+  </div>
+
+</section>
+
+
 
       {/* Stats Overview */}
-      <section className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="section-title">By The Numbers</h2>
-          <p className="section-subtitle">Comprehensive sports database at your fingertips</p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="glass-card text-center p-8">
-            <div className="text-5xl font-bold text-red-600 mb-2">{playersData.length}</div>
-            <div className="text-gray-300 uppercase tracking-wider text-sm">Elite Players</div>
-          </div>
-          <div className="glass-card text-center p-8">
-            <div className="text-5xl font-bold text-red-600 mb-2">4</div>
-            <div className="text-gray-300 uppercase tracking-wider text-sm">Sports Categories</div>
-          </div>
-          <div className="glass-card text-center p-8">
-            <div className="text-5xl font-bold text-red-600 mb-2">250+</div>
-            <div className="text-gray-300 uppercase tracking-wider text-sm">Major Achievements</div>
-          </div>
-          <div className="glass-card text-center p-8">
-            <div className="text-5xl font-bold text-red-600 mb-2">∞</div>
-            <div className="text-gray-300 uppercase tracking-wider text-sm">Records Broken</div>
-          </div>
-        </div>
-      </section>
+<section className="container mx-auto px-4 py-20">
+
+<div className="text-center mb-16">
+<h2 className="text-4xl font-bold text-white mb-4">
+By The Numbers
+</h2>
+
+<p className="text-gray-400">
+Comprehensive sports database at your fingertips
+</p>
+</div>
+
+<div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+
+<div className="glass-card text-center p-8">
+<div className="text-4xl font-bold text-red-500">
+{playersData.length}
+</div>
+<p className="text-gray-400">Elite Players</p>
+</div>
+
+<div className="glass-card text-center p-8">
+<div className="text-4xl font-bold text-red-500">4</div>
+<p className="text-gray-400">Sports Categories</p>
+</div>
+
+<div className="glass-card text-center p-8">
+<div className="text-4xl font-bold text-red-500">250+</div>
+<p className="text-gray-400">Major Achievements</p>
+</div>
+
+<div className="glass-card text-center p-8">
+<div className="text-4xl font-bold text-red-500">∞</div>
+<p className="text-gray-400">Records Broken</p>
+</div>
+
+</div>
+
+</section>
 
       {/* Popular Sports */}
       <section className="container mx-auto px-4">
